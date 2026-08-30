@@ -329,6 +329,26 @@ ul,ol{list-style:none}
   .social-section{padding:80px 24px 100px}
 }
 
+/* ─── BRANCH POPUP ─── */
+.branch-popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn .4s ease}
+.branch-popup{background:#fff;border-radius:16px;padding:40px 32px;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popIn .4s ease}
+@keyframes popIn{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.branch-popup h2{font-family:var(--playfair);font-size:clamp(22px,4vw,28px);font-weight:700;color:var(--brand);margin-bottom:6px}
+.branch-popup .popup-sub{font-size:12px;color:#71717a;margin-bottom:24px;line-height:1.6}
+.branch-popup .popup-note{font-size:11px;color:#C49B2D;font-style:italic;margin-bottom:24px;padding:10px 16px;background:#fdf8e8;border-radius:8px;line-height:1.6;border:1px solid #f0e0b0}
+.branch-popup .branch-btns{display:flex;gap:12px;justify-content:center}
+.branch-popup .branch-btn{flex:1;padding:14px 20px;border:2px solid #e4e4e7;background:#fff;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:#18181b;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:6px}
+.branch-popup .branch-btn:hover{border-color:var(--brand);background:#fdf8e8}
+.branch-popup .branch-btn.selected{border-color:var(--brand);background:var(--brand);color:#000}
+.branch-popup .branch-btn .branch-icon{font-size:24px}
+.branch-popup .branch-btn .branch-day{font-size:10px;color:#71717a;font-weight:400;margin-top:2px}
+.branch-popup .branch-btn:hover .branch-day,.branch-popup .branch-btn.selected .branch-day{color:#333}
+@media(max-width:480px){
+  .branch-popup{padding:28px 20px}
+  .branch-popup .branch-btns{flex-direction:column}
+  .branch-popup .branch-btn{padding:12px 16px}
+}
+
 /* ─── WHATSAPP FLOATING BUTTON ─── */
 .wa-float{position:fixed;bottom:24px;right:24px;z-index:999;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .3s,box-shadow .3s;animation:waPulse 2s infinite}
 .wa-float:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(37,211,102,.5)}
@@ -430,6 +450,27 @@ ul,ol{list-style:none}
 </style>
 </head>
 <body>
+
+<!-- ═══════ BRANCH SELECTION POPUP ═══════ -->
+<div class="branch-popup-overlay" id="branchPopup">
+  <div class="branch-popup">
+    <h2>Choose Your Branch</h2>
+    <p class="popup-sub">Select a branch to view location-specific information.</p>
+    <div class="popup-note">Dr. Bilal is available in Islamabad on Saturday & Sunday, and in Peshawar on the remaining days.</div>
+    <div class="branch-btns">
+      <button class="branch-btn" onclick="selectBranch('peshawar')" id="btnPeshawar">
+        <span class="branch-icon">&#127963;</span>
+        Peshawar
+        <span class="branch-day">Mon - Fri</span>
+      </button>
+      <button class="branch-btn" onclick="selectBranch('islamabad')" id="btnIslamabad">
+        <span class="branch-icon">&#127963;</span>
+        Islamabad
+        <span class="branch-day">Sat - Sun</span>
+      </button>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════ NAVBAR ═══════ -->
 <nav class="nav" id="nav">
@@ -718,19 +759,29 @@ ul,ol{list-style:none}
             <input type="tel" required placeholder="+92 XXXX XXXXXX">
           </div>
         </div>
-        <div class="form-group" style="margin-bottom:12px">
-          <label>Service Needed</label>
-          <select>
-            <option value="">Select a service</option>
-            <option>Dental Implants</option>
-            <option>Cosmetic Dentistry</option>
-            <option>Orthodontics (Braces)</option>
-            <option>Teeth Whitening</option>
-            <option>Root Canal Treatment</option>
-            <option>Crown & Bridge</option>
-            <option>Pediatric Dentistry</option>
-            <option>Tooth Reshaping</option>
-          </select>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Choose Your Branch</label>
+            <select id="formBranch" required>
+              <option value="">Select a branch</option>
+              <option value="Peshawar">Peshawar (Mon - Fri)</option>
+              <option value="Islamabad">Islamabad (Sat - Sun)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Service Needed</label>
+            <select>
+              <option value="">Select a service</option>
+              <option>Dental Implants</option>
+              <option>Cosmetic Dentistry</option>
+              <option>Orthodontics (Braces)</option>
+              <option>Teeth Whitening</option>
+              <option>Root Canal Treatment</option>
+              <option>Crown & Bridge</option>
+              <option>Pediatric Dentistry</option>
+              <option>Tooth Reshaping</option>
+            </select>
+          </div>
         </div>
         <div class="form-group" style="margin-bottom:16px">
           <label>Message (Optional)</label>
@@ -743,7 +794,7 @@ ul,ol{list-style:none}
 </section>
 
 <!-- ═══════ MAP ═══════ -->
-<section class="map-section">
+<section class="map-section peshawar-only" id="mapSection">
   <div class="map-inner">
     <div class="map-heading reveal">
       <p class="map-sub">Find Us</p>
@@ -1039,12 +1090,14 @@ function submitForm(e) {
   var form = document.getElementById('contactForm');
   var name = form.querySelector('input[type="text"]').value;
   var phone = form.querySelector('input[type="tel"]').value;
-  var service = form.querySelector('select').value;
+  var branch = document.getElementById('formBranch').value;
+  var service = form.querySelectorAll('select')[1].value;
   var message = form.querySelector('textarea').value;
 
   var msg = 'New Appointment Request\n';
   msg += 'Name: ' + name + '\n';
   msg += 'Phone: ' + phone + '\n';
+  msg += 'Branch: ' + (branch || 'N/A') + '\n';
   msg += 'Treatment: ' + service + '\n';
   msg += 'Message: ' + (message || 'N/A');
 
@@ -1080,6 +1133,66 @@ var revealObserver = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.reveal').forEach(function(el) {
   revealObserver.observe(el);
 });
+
+// ─── BRANCH SELECTION ───
+var peshawarAddress = 'Shaikhabad Rd, Sheikh Junaidabad, Peshawar, 25000, Pakistan';
+var islamabadAddress = 'G-8 Markaz, Islamabad, Pakistan';
+var peshawarLocationShort = 'Shaikhabad Rd, Sheikh Junaidabad, Peshawar, 25000';
+var islamabadLocationShort = 'G-8 Markaz, Islamabad';
+
+function selectBranch(branch) {
+  localStorage.setItem('selectedBranch', branch);
+  document.getElementById('branchPopup').style.display = 'none';
+  applyBranch(branch);
+}
+
+function applyBranch(branch) {
+  if (branch === 'islamabad') {
+    // Hide map section
+    var mapSection = document.getElementById('mapSection');
+    if (mapSection) mapSection.style.display = 'none';
+
+    // Update contact address
+    var addrEl = document.querySelector('.contact-info .address');
+    if (addrEl) addrEl.innerHTML = 'Bilal Dental Clinic<br>' + islamabadAddress;
+
+    // Update contact location value
+    var locVal = document.querySelector('.contact-item .value:last-child');
+    if (locVal && locVal.textContent.includes('Peshawar')) locVal.textContent = islamabadLocationShort;
+
+    // Update map address
+    var mapAddr = document.querySelector('.map-addr');
+    if (mapAddr) mapAddr.innerHTML = 'Bilal Dental Clinic<br>' + islamabadAddress;
+
+    // Update nav brand
+    var navBrand = document.querySelector('.nav-brand p');
+    if (navBrand) navBrand.textContent = 'Islamabad';
+
+    // Update footer description
+    var footerDesc = document.querySelector('.footer-desc');
+    if (footerDesc) footerDesc.textContent = 'A trusted dental clinic in Islamabad committed to delivering exceptional oral healthcare and professional dental services.';
+
+    // Pre-select Islamabad in form
+    var formBranch = document.getElementById('formBranch');
+    if (formBranch) formBranch.value = 'Islamabad';
+  } else {
+    // Peshawar — keep everything as is
+    var mapSection = document.getElementById('mapSection');
+    if (mapSection) mapSection.style.display = '';
+
+    var formBranch = document.getElementById('formBranch');
+    if (formBranch) formBranch.value = 'Peshawar';
+  }
+}
+
+// On page load, check if branch was already chosen
+(function() {
+  var saved = localStorage.getItem('selectedBranch');
+  if (saved) {
+    document.getElementById('branchPopup').style.display = 'none';
+    applyBranch(saved);
+  }
+})();
 </script>
 </body>
 </html>
