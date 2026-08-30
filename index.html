@@ -336,8 +336,8 @@ ul,ol{list-style:none}
 .branch-popup::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,.1),transparent)}
 @keyframes popIn{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .branch-popup h2{font-family:'Anton',sans-serif;font-size:clamp(20px,4vw,26px);font-weight:400;color:#000;margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}
-.branch-popup .popup-sub{font-size:13px;color:rgba(0,0,0,.45);margin-bottom:24px;line-height:1.6;font-family:'DM Sans',sans-serif;font-weight:300}
-.branch-popup .popup-note{font-size:11px;color:rgba(0,0,0,.5);font-style:italic;margin-bottom:28px;padding:14px 18px;background:rgba(0,0,0,.03);border-radius:12px;line-height:1.6;border:1px solid rgba(0,0,0,.06);font-family:'DM Sans',sans-serif}
+.branch-popup .popup-sub{font-size:13px;color:#000;margin-bottom:24px;line-height:1.6;font-family:'DM Sans',sans-serif;font-weight:400}
+.branch-popup .popup-note{font-size:11px;color:#333;font-style:italic;margin-bottom:28px;padding:14px 18px;background:rgba(0,0,0,.04);border-radius:12px;line-height:1.6;border:1px solid rgba(0,0,0,.1);font-family:'DM Sans',sans-serif}
 .branch-popup .branch-btns{display:flex;gap:12px;justify-content:center}
 .branch-popup .branch-btn{flex:1;padding:28px 16px;border:1.5px solid rgba(0,0,0,.12);background:transparent;border-radius:16px;cursor:pointer;font-family:'Anton',sans-serif;font-size:18px;font-weight:400;color:#000;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;letter-spacing:.06em;text-transform:uppercase}
 .branch-popup .branch-btn::before{content:'';position:absolute;inset:0;border-radius:16px;border:1.5px solid transparent;transition:border-color .3s}
@@ -345,10 +345,10 @@ ul,ol{list-style:none}
 .branch-popup .branch-btn:hover::before{border-color:rgba(0,0,0,.1)}
 .branch-popup .branch-btn.selected{border-color:#000;background:#000;color:#fff}
 .branch-popup .branch-btn .branch-label{font-size:18px}
-.branch-popup .branch-btn .branch-day{font-size:10px;color:rgba(0,0,0,.3);font-weight:400;letter-spacing:.08em;font-family:'DM Sans',sans-serif}
-.branch-popup .branch-btn:hover .branch-day{color:rgba(0,0,0,.5)}
-.branch-popup .branch-btn.selected .branch-day{color:rgba(255,255,255,.5)}
-.branch-popup .popup-footer{margin-top:24px;font-size:10px;color:rgba(0,0,0,.2);letter-spacing:.08em;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:400}
+.branch-popup .branch-btn .branch-day{font-size:10px;color:#666;font-weight:400;letter-spacing:.08em;font-family:'DM Sans',sans-serif}
+.branch-popup .branch-btn:hover .branch-day{color:#333}
+.branch-popup .branch-btn.selected .branch-day{color:rgba(255,255,255,.6)}
+.branch-popup .popup-footer{margin-top:24px;font-size:10px;color:#999;letter-spacing:.08em;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:400}
 @media(max-width:480px){
   .branch-popup{padding:36px 24px 28px;border-radius:20px}
   .branch-popup .branch-btns{flex-direction:column;gap:10px}
