@@ -330,23 +330,32 @@ ul,ol{list-style:none}
 }
 
 /* ─── BRANCH POPUP ─── */
-.branch-popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn .4s ease}
-.branch-popup{background:#fff;border-radius:16px;padding:40px 32px;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popIn .4s ease}
-@keyframes popIn{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.branch-popup h2{font-family:var(--playfair);font-size:clamp(22px,4vw,28px);font-weight:700;color:var(--brand);margin-bottom:6px}
-.branch-popup .popup-sub{font-size:12px;color:#71717a;margin-bottom:24px;line-height:1.6}
-.branch-popup .popup-note{font-size:11px;color:#C49B2D;font-style:italic;margin-bottom:24px;padding:10px 16px;background:#fdf8e8;border-radius:8px;line-height:1.6;border:1px solid #f0e0b0}
-.branch-popup .branch-btns{display:flex;gap:12px;justify-content:center}
-.branch-popup .branch-btn{flex:1;padding:14px 20px;border:2px solid #e4e4e7;background:#fff;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:#18181b;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:6px}
-.branch-popup .branch-btn:hover{border-color:var(--brand);background:#fdf8e8}
-.branch-popup .branch-btn.selected{border-color:var(--brand);background:var(--brand);color:#000}
-.branch-popup .branch-btn .branch-icon{font-size:24px}
-.branch-popup .branch-btn .branch-day{font-size:10px;color:#71717a;font-weight:400;margin-top:2px}
-.branch-popup .branch-btn:hover .branch-day,.branch-popup .branch-btn.selected .branch-day{color:#333}
+.branch-popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn .4s ease}
+.branch-popup{background:#fff;border-radius:24px;padding:44px 36px 36px;max-width:440px;width:100%;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,.35);animation:popIn .5s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden}
+.branch-popup::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand),#e6c04a,var(--brand))}
+.branch-popup-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#e6c04a);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(196,155,45,.3)}
+.branch-popup-icon svg{width:30px;height:30px;fill:#fff}
+@keyframes popIn{from{opacity:0;transform:scale(.85) translateY(24px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.branch-popup h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,4vw,28px);font-weight:700;color:#18181b;margin-bottom:6px;letter-spacing:-.02em}
+.branch-popup .popup-sub{font-size:13px;color:#71717a;margin-bottom:20px;line-height:1.6;font-family:'DM Sans',sans-serif}
+.branch-popup .popup-note{font-size:11px;color:#8B6914;font-style:italic;margin-bottom:28px;padding:12px 18px;background:linear-gradient(135deg,#fdf8e8,#fef6d8);border-radius:12px;line-height:1.6;border:1px solid #f0e0b0;font-family:'DM Sans',sans-serif}
+.branch-popup .branch-btns{display:flex;gap:14px;justify-content:center}
+.branch-popup .branch-btn{flex:1;padding:20px 16px;border:2px solid #e4e4e7;background:#fafafa;border-radius:16px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;color:#18181b;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;overflow:hidden}
+.branch-popup .branch-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--brand),#e6c04a);opacity:0;transition:opacity .3s;border-radius:14px}
+.branch-popup .branch-btn:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,155,45,.2)}
+.branch-popup .branch-btn:hover::after{opacity:.08}
+.branch-popup .branch-btn.selected{border-color:var(--brand);background:var(--brand);color:#fff}
+.branch-popup .branch-btn .branch-icon{font-size:28px;position:relative;z-index:1}
+.branch-popup .branch-btn .branch-label{font-size:15px;font-weight:700;position:relative;z-index:1;letter-spacing:.02em}
+.branch-popup .branch-btn .branch-day{font-size:10px;color:#71717a;font-weight:500;margin-top:2px;position:relative;z-index:1;letter-spacing:.04em}
+.branch-popup .branch-btn:hover .branch-day,.branch-popup .branch-btn.selected .branch-day{color:rgba(0,0,0,.6)}
+.branch-popup .popup-footer{margin-top:20px;font-size:10px;color:#a1a1aa;letter-spacing:.05em;font-family:'DM Sans',sans-serif}
 @media(max-width:480px){
-  .branch-popup{padding:28px 20px}
-  .branch-popup .branch-btns{flex-direction:column}
-  .branch-popup .branch-btn{padding:12px 16px}
+  .branch-popup{padding:32px 20px 24px;border-radius:20px}
+  .branch-popup .branch-btns{flex-direction:column;gap:10px}
+  .branch-popup .branch-btn{flex-direction:row;gap:12px;padding:16px 20px;justify-content:center}
+  .branch-popup-icon{width:56px;height:56px}
+  .branch-popup-icon svg{width:26px;height:26px}
 }
 
 /* ─── WHATSAPP FLOATING BUTTON ─── */
@@ -454,21 +463,25 @@ ul,ol{list-style:none}
 <!-- ═══════ BRANCH SELECTION POPUP ═══════ -->
 <div class="branch-popup-overlay" id="branchPopup">
   <div class="branch-popup">
+    <div class="branch-popup-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    </div>
     <h2>Choose Your Branch</h2>
     <p class="popup-sub">Select a branch to view location-specific information.</p>
     <div class="popup-note">Dr. Bilal is available in Islamabad on Saturday & Sunday, and in Peshawar on the remaining days.</div>
     <div class="branch-btns">
       <button class="branch-btn" onclick="selectBranch('peshawar')" id="btnPeshawar">
         <span class="branch-icon">&#127963;</span>
-        Peshawar
+        <span class="branch-label">Peshawar</span>
         <span class="branch-day">Mon - Fri</span>
       </button>
       <button class="branch-btn" onclick="selectBranch('islamabad')" id="btnIslamabad">
         <span class="branch-icon">&#127963;</span>
-        Islamabad
+        <span class="branch-label">Islamabad</span>
         <span class="branch-day">Sat - Sun</span>
       </button>
     </div>
+    <p class="popup-footer">Your choice will be remembered for your next visit</p>
   </div>
 </div>
 
@@ -1147,41 +1160,80 @@ function selectBranch(branch) {
 }
 
 function applyBranch(branch) {
-  if (branch === 'islamabad') {
-    // Hide map section
-    var mapSection = document.getElementById('mapSection');
-    if (mapSection) mapSection.style.display = 'none';
+  var isPeshawar = branch === 'peshawar';
+  var city = isPeshawar ? 'Peshawar' : 'Islamabad';
+  var fullAddr = isPeshawar ? peshawarAddress : islamabadAddress;
+  var shortAddr = isPeshawar ? peshawarLocationShort : islamabadLocationShort;
 
-    // Update contact address
-    var addrEl = document.querySelector('.contact-info .address');
-    if (addrEl) addrEl.innerHTML = 'Bilal Dental Clinic<br>' + islamabadAddress;
+  // Map section — show for Peshawar, hide for Islamabad
+  var mapSection = document.getElementById('mapSection');
+  if (mapSection) mapSection.style.display = isPeshawar ? '' : 'none';
 
-    // Update contact location value
-    var locVal = document.querySelector('.contact-item .value:last-child');
-    if (locVal && locVal.textContent.includes('Peshawar')) locVal.textContent = islamabadLocationShort;
+  // Hero subtitle
+  var heroSub = document.querySelector('.hero-sub');
+  if (heroSub) heroSub.textContent = 'Trusted Dental Care in ' + city;
 
-    // Update map address
-    var mapAddr = document.querySelector('.map-addr');
-    if (mapAddr) mapAddr.innerHTML = 'Bilal Dental Clinic<br>' + islamabadAddress;
+  // Hero description
+  var heroDesc = document.querySelector('.hero-desc');
+  if (heroDesc) heroDesc.textContent = 'Professional dental care at Bilal Dental Clinic. Quality treatment in a comfortable environment in ' + city + '.';
 
-    // Update nav brand
-    var navBrand = document.querySelector('.nav-brand p');
-    if (navBrand) navBrand.textContent = 'Islamabad';
+  // About heading city
+  var aboutH2 = document.querySelector('.about-text h2');
+  if (aboutH2) aboutH2.innerHTML = 'Bilal Dental Clinic<br><em>' + city + '</em>';
 
-    // Update footer description
-    var footerDesc = document.querySelector('.footer-desc');
-    if (footerDesc) footerDesc.textContent = 'A trusted dental clinic in Islamabad committed to delivering exceptional oral healthcare and professional dental services.';
+  // About paragraphs — replace Peshawar/Islamabad references
+  var aboutPs = document.querySelectorAll('.about-text p');
+  aboutPs.forEach(function(p) {
+    var text = p.textContent;
+    if (text.includes('Peshawar')) {
+      text = text.replace(/Peshawar/g, city);
+    } else if (text.includes('Islamabad')) {
+      text = text.replace(/Islamabad/g, city);
+    }
+    p.textContent = text;
+  });
 
-    // Pre-select Islamabad in form
-    var formBranch = document.getElementById('formBranch');
-    if (formBranch) formBranch.value = 'Islamabad';
-  } else {
-    // Peshawar — keep everything as is
-    var mapSection = document.getElementById('mapSection');
-    if (mapSection) mapSection.style.display = '';
+  // About img alt
+  var aboutImg = document.querySelector('.about-img-wrap img');
+  if (aboutImg) aboutImg.alt = 'Bilal Dental Clinic in ' + city;
 
-    var formBranch = document.getElementById('formBranch');
-    if (formBranch) formBranch.value = 'Peshawar';
+  // Hero bg alt
+  var heroImg = document.querySelector('.hero-bg img');
+  if (heroImg) heroImg.alt = 'Bilal Dental Clinic in ' + city;
+
+  // Nav brand
+  var navBrand = document.querySelector('.nav-brand p');
+  if (navBrand) navBrand.textContent = city;
+
+  // Contact address
+  var addrEl = document.querySelector('.contact-info .address');
+  if (addrEl) addrEl.innerHTML = 'Bilal Dental Clinic<br>' + fullAddr;
+
+  // Contact location value — find the one with "Location" label
+  var contactItems = document.querySelectorAll('.contact-info .contact-item');
+  contactItems.forEach(function(item) {
+    var label = item.querySelector('.label');
+    if (label && label.textContent.trim() === 'Location') {
+      var valueEl = item.querySelector('.value');
+      if (valueEl) valueEl.textContent = shortAddr;
+    }
+  });
+
+  // Map address
+  var mapAddr = document.querySelector('.map-addr');
+  if (mapAddr) mapAddr.innerHTML = 'Bilal Dental Clinic<br>' + fullAddr;
+
+  // Footer description
+  var footerDesc = document.querySelector('.footer-desc');
+  if (footerDesc) footerDesc.textContent = 'A trusted dental clinic in ' + city + ' committed to delivering exceptional oral healthcare and professional dental services.';
+
+  // Pre-select branch in form
+  var formBranch = document.getElementById('formBranch');
+  if (formBranch) formBranch.value = isPeshawar ? 'Peshawar' : 'Islamabad';
+
+  // If reverting to Peshawar, restore the original about paragraphs if needed
+  if (isPeshawar) {
+    // The about paragraphs are already set to Peshawar above
   }
 }
 
