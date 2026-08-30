@@ -481,7 +481,7 @@ ul,ol{list-style:none}
         <span class="branch-day">Sat - Sun</span>
       </button>
     </div>
-    <p class="popup-footer">Your choice will be remembered for your next visit</p>
+    <p class="popup-footer">Please select a branch to continue</p>
   </div>
 </div>
 
@@ -1154,7 +1154,6 @@ var peshawarLocationShort = 'Shaikhabad Rd, Sheikh Junaidabad, Peshawar, 25000';
 var islamabadLocationShort = 'G-8 Markaz, Islamabad';
 
 function selectBranch(branch) {
-  localStorage.setItem('selectedBranch', branch);
   document.getElementById('branchPopup').style.display = 'none';
   applyBranch(branch);
 }
@@ -1237,14 +1236,7 @@ function applyBranch(branch) {
   }
 }
 
-// On page load, check if branch was already chosen
-(function() {
-  var saved = localStorage.getItem('selectedBranch');
-  if (saved) {
-    document.getElementById('branchPopup').style.display = 'none';
-    applyBranch(saved);
-  }
-})();
+// Popup always shows on page load (branch not persisted)
 </script>
 </body>
 </html>
