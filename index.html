@@ -330,32 +330,32 @@ ul,ol{list-style:none}
 }
 
 /* ─── BRANCH POPUP ─── */
-.branch-popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn .4s ease}
-.branch-popup{background:#fff;border-radius:24px;padding:44px 36px 36px;max-width:440px;width:100%;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,.35);animation:popIn .5s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden}
-.branch-popup::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand),#e6c04a,var(--brand))}
-.branch-popup-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#e6c04a);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(196,155,45,.3)}
-.branch-popup-icon svg{width:30px;height:30px;fill:#fff}
-@keyframes popIn{from{opacity:0;transform:scale(.85) translateY(24px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.branch-popup h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,4vw,28px);font-weight:700;color:#18181b;margin-bottom:6px;letter-spacing:-.02em}
-.branch-popup .popup-sub{font-size:13px;color:#71717a;margin-bottom:20px;line-height:1.6;font-family:'DM Sans',sans-serif}
-.branch-popup .popup-note{font-size:11px;color:#8B6914;font-style:italic;margin-bottom:28px;padding:12px 18px;background:linear-gradient(135deg,#fdf8e8,#fef6d8);border-radius:12px;line-height:1.6;border:1px solid #f0e0b0;font-family:'DM Sans',sans-serif}
-.branch-popup .branch-btns{display:flex;gap:14px;justify-content:center}
-.branch-popup .branch-btn{flex:1;padding:20px 16px;border:2px solid #e4e4e7;background:#fafafa;border-radius:16px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;color:#18181b;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;overflow:hidden}
-.branch-popup .branch-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--brand),#e6c04a);opacity:0;transition:opacity .3s;border-radius:14px}
-.branch-popup .branch-btn:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,155,45,.2)}
-.branch-popup .branch-btn:hover::after{opacity:.08}
-.branch-popup .branch-btn.selected{border-color:var(--brand);background:var(--brand);color:#fff}
-.branch-popup .branch-btn .branch-icon{font-size:28px;position:relative;z-index:1}
-.branch-popup .branch-btn .branch-label{font-size:15px;font-weight:700;position:relative;z-index:1;letter-spacing:.02em}
-.branch-popup .branch-btn .branch-day{font-size:10px;color:#71717a;font-weight:500;margin-top:2px;position:relative;z-index:1;letter-spacing:.04em}
-.branch-popup .branch-btn:hover .branch-day,.branch-popup .branch-btn.selected .branch-day{color:rgba(0,0,0,.6)}
-.branch-popup .popup-footer{margin-top:20px;font-size:10px;color:#a1a1aa;letter-spacing:.05em;font-family:'DM Sans',sans-serif}
+.branch-popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn .4s ease}
+.branch-popup{background:#000;color:#fff;border-radius:24px;padding:48px 40px 40px;max-width:440px;width:100%;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08);animation:popIn .5s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden}
+.branch-popup::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,transparent,#fff,transparent)}
+.branch-popup::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent)}
+@keyframes popIn{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.branch-popup-icon{width:56px;height:56px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;transition:border-color .3s}
+.branch-popup-icon svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.branch-popup h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(20px,4vw,26px);font-weight:600;color:#fff;margin-bottom:8px;letter-spacing:-.02em}
+.branch-popup .popup-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:24px;line-height:1.6;font-family:'DM Sans',sans-serif;font-weight:300}
+.branch-popup .popup-note{font-size:11px;color:rgba(255,255,255,.5);font-style:italic;margin-bottom:28px;padding:14px 18px;background:rgba(255,255,255,.04);border-radius:12px;line-height:1.6;border:1px solid rgba(255,255,255,.06);font-family:'DM Sans',sans-serif}
+.branch-popup .branch-btns{display:flex;gap:12px;justify-content:center}
+.branch-popup .branch-btn{flex:1;padding:24px 16px;border:1px solid rgba(255,255,255,.1);background:transparent;border-radius:16px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;color:#fff;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative}
+.branch-popup .branch-btn::before{content:'';position:absolute;inset:0;border-radius:16px;border:1px solid transparent;transition:border-color .3s}
+.branch-popup .branch-btn:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.03)}
+.branch-popup .branch-btn:hover::before{border-color:rgba(255,255,255,.1)}
+.branch-popup .branch-btn.selected{border-color:#fff;background:rgba(255,255,255,.06)}
+.branch-popup .branch-btn .branch-icon{font-size:26px;opacity:.8}
+.branch-popup .branch-btn .branch-label{font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.branch-popup .branch-btn .branch-day{font-size:10px;color:rgba(255,255,255,.3);font-weight:400;letter-spacing:.06em}
+.branch-popup .branch-btn:hover .branch-day{color:rgba(255,255,255,.5)}
+.branch-popup .branch-btn.selected .branch-day{color:rgba(255,255,255,.5)}
+.branch-popup .popup-footer{margin-top:24px;font-size:10px;color:rgba(255,255,255,.2);letter-spacing:.08em;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:400}
 @media(max-width:480px){
-  .branch-popup{padding:32px 20px 24px;border-radius:20px}
+  .branch-popup{padding:36px 24px 28px;border-radius:20px}
   .branch-popup .branch-btns{flex-direction:column;gap:10px}
-  .branch-popup .branch-btn{flex-direction:row;gap:12px;padding:16px 20px;justify-content:center}
-  .branch-popup-icon{width:56px;height:56px}
-  .branch-popup-icon svg{width:26px;height:26px}
+  .branch-popup .branch-btn{flex-direction:row;gap:12px;padding:18px 20px;justify-content:center}
 }
 
 /* ─── WHATSAPP FLOATING BUTTON ─── */
